@@ -86,19 +86,19 @@ def use_neural_network(input_data):
     prediction = neural_network_model(x)
 
     with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-        saver.restore(sess, os.path.join(os.getcwd(),
-                                         'model\sarcasm_model.ckpt'))
-        features = create_feature_sets.extractFeatureOfASentence(input_data)
+     sess.run(tf.global_variables_initializer())
+     saver.restore(sess, os.path.join(os.getcwd(),'model/sarcasm_model.ckpt'))
+     features = create_feature_sets.extractFeatureOfASentence(input_data)
+     result = (sess.run(tf.argmax(prediction.eval(feed_dict={x:[features]}), 1)))
+     if result[0] == 0:
+      print('Sarcastic:', input_data)
+     elif result[0] == 1:
+      print('Regular:', input_data)
 
-        result = (sess.run(tf.argmax(prediction.eval(feed_dict={x: [
-            features]}), 1)))
-        if result[0] == 0:
-            print('Sarcastic:', input_data)
-        elif result[0] == 1:
-            print('Regular:', input_data)
+
 
 
 # Supply the sentence to be tested below as a parameter in the method call.
 if __name__ == '__main__':
-    use_neural_network("Going to the gym surely makes you fit, in a same way standing in a garage make you a car!")
+  
+    use_neural_network("Should use the same logic with white supremacists... KKK said blacks were inferior 100 years ago, so it must be true because someone said it before now.")

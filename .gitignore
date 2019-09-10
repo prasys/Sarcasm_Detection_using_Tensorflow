@@ -2,3 +2,10 @@ tensorflow/*
 .idea/
 __pycache__/
 tensorflow/
+checkpoint
+*.npy
+*.meta
+model/sarcasm_model.ckpt.data-00000-of-00001
+*.index
+model/.DS_Store
+.DS_Store

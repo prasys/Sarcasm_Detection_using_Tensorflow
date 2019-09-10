@@ -42,7 +42,7 @@ def divideFeatureSets(features):
     return train_input, train_output, test_input, test_output
 
 # Load the featuresets array
-featuresets = np.load('featuresets.npy')
+featuresets = np.load('featuresets.npy',allow_pickle=True)
 
 # Divide the feature sets into training and testing set.
 train_input, train_output, test_input, test_output = divideFeatureSets(featuresets)
@@ -205,7 +205,7 @@ def train_neural_network(x):
 
         # Save the model for using in future.
         saver = tf.train.Saver()
-        saver.save(sess, os.path.join(os.getcwd(), 'model\sarcasm_model.ckpt'))
+        saver.save(sess, os.path.join(os.getcwd(), 'model/sarcasm_model.ckpt'))
 
 
 if __name__ == '__main__':
